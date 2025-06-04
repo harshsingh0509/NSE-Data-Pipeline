@@ -7,7 +7,6 @@ from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
@@ -24,6 +23,12 @@ DB_CONFIG = {
 # ✅ File Download Setup
 DOWNLOAD_DIR = os.path.join(os.getcwd(), "_cfDownloads")
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
+
+# ✅ WebDriver Manager Setup
+os.environ['WDM_LOCAL'] = '1'
+os.environ['WDM_CACHE_DIR'] = os.path.join(os.getcwd(), '.wdm_cache')
+
+from webdriver_manager.chrome import ChromeDriverManager
 
 # ✅ Chrome Options
 options = Options()
@@ -48,9 +53,8 @@ prefs = {
 options.add_experimental_option("prefs", prefs)
 
 # ✅ Initialize WebDriver
-CHROMEDRIVER_PATH = "/snap/chromium/current/usr/lib/chromium-browser/chromedriver"
+CHROMEDRIVER_PATH = "/usr/bin/chromedriver"
 service = Service("/usr/local/bin/chromedriver")
-service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=options)
 
 # ✅ Remove webdriver detection
