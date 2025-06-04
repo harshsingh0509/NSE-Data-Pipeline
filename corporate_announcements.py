@@ -3,6 +3,7 @@ import time
 import tempfile
 import pandas as pd
 import psycopg2
+import chromedriver_autoinstaller
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -29,6 +30,8 @@ os.environ['WDM_LOCAL'] = '1'
 os.environ['WDM_CACHE_DIR'] = os.path.join(os.getcwd(), '.wdm_cache')
 
 from webdriver_manager.chrome import ChromeDriverManager
+
+chromedriver_autoinstaller.install()
 
 # ✅ Chrome Options
 options = Options()
