@@ -31,8 +31,6 @@ os.environ['WDM_CACHE_DIR'] = os.path.join(os.getcwd(), '.wdm_cache')
 
 from webdriver_manager.chrome import ChromeDriverManager
 
-chromedriver_autoinstaller.install()
-
 # ✅ Chrome Options
 options = Options()
 options.binary_location = "/usr/bin/chromium-browser"
