@@ -57,7 +57,7 @@ options.add_experimental_option("prefs", prefs)
 
 # ✅ Initialize WebDriver
 CHROMEDRIVER_PATH = "/usr/bin/chromedriver"
-service = Service("/usr/local/bin/chromedriver")
+service = Service("/usr/lib/chromium-browser/chromedriver")
 driver = webdriver.Chrome(service=service, options=options)
 
 # ✅ Remove webdriver detection
