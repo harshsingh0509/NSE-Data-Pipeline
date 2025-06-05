@@ -89,8 +89,23 @@ try:
 
     time.sleep(15)
 
+    timeout = 30  # seconds
+    download_complete = False
+    start_time = time.time()
+
+   while time.time() - start_time < timeout:
+    if any(f.endswith(".crdownload") for f in os.listdir(DOWNLOAD_DIR)):
+        time.sleep(1)
+    else:
+        download_complete = True
+        break
+
+if not download_complete:
+    raise TimeoutError("Download did not complete in expected time.")
+
     # 📂 Step 3: Locate downloaded file
     files = [f for f in os.listdir(DOWNLOAD_DIR) if f.endswith(".csv")]
+    print("📂 Download dir contains:", os.listdir(DOWNLOAD_DIR))  
     if not files:
         raise FileNotFoundError("❌ CSV download failed.")
     latest_csv = max([os.path.join(DOWNLOAD_DIR, f) for f in files], key=os.path.getctime)
